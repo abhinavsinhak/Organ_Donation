@@ -1,0 +1,5 @@
+<!-- File: res/drawable/text_border.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#FFFFFF" /> <!-- Background color -->
+    <padding android:left="10dp" android:top="10dp" android:right="10dp" android:bottom="10dp" /> <!-- Space between the border and the text -->
+</shape>
