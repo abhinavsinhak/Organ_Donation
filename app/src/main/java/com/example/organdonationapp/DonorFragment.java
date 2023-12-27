@@ -1,6 +1,7 @@
 // File: DonorFragment.java
 package com.example.organdonationapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,10 +44,26 @@ public class DonorFragment extends Fragment {
         sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
 
         buttonUpdate.setOnClickListener(v -> {
-            // Handle the button click event
-            // You can update the donor information and notify the SharedViewModel here
+            Donor donor = new Donor(
+                    editTextName.getText().toString(),
+                    editTextOrgan.getText().toString(),
+                    editTextAadhar.getText().toString(),
+                    editTextMobile.getText().toString(),
+                    spinnerGender.getSelectedItem().toString(),
+                    Integer.parseInt(editTextAge.getText().toString())
+            );
+
+            // Notify the SharedViewModel with the selected gender
             String selectedGender = spinnerGender.getSelectedItem().toString();
             sharedViewModel.selectGender(selectedGender);
+
+            // Pass the donor information to the DatabaseIntentService
+            Intent intent = new Intent(getActivity(), DatabaseIntentService.class);
+            intent.setAction("INSERT_DONOR_DATA");
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("donor", donor);
+            intent.putExtras(bundle);
+            getActivity().startService(intent);
         });
 
         return view;

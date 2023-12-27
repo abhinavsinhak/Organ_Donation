@@ -47,6 +47,7 @@ public class fragment_receiver extends Fragment {
         buttonUpdate.setOnClickListener(v -> {
             // Handle the button click event
             // You can store the receiver information in the database here
+
         });
 
         return view;
