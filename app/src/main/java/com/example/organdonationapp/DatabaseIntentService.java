@@ -8,6 +8,7 @@ import android.util.Log;
 public class DatabaseIntentService extends IntentService {
 
     private static final String TAG = "DatabaseIntentService";
+
     private DonorDatabaseHelper donorDatabaseHelper;
     private ReceiverDatabaseHelper receiverDatabaseHelper;
 
