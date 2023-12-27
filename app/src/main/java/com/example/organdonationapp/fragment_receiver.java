@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -45,8 +46,20 @@ public class fragment_receiver extends Fragment {
         });
 
         buttonUpdate.setOnClickListener(v -> {
-            // Handle the button click event
-            // You can store the receiver information in the database here
+            Receiver receiver = new Receiver(
+                    editTextName.getText().toString(),
+                    editTextOrgan.getText().toString(),
+                    editTextAadhar.getText().toString(),
+                    editTextMobile.getText().toString(),
+                    spinnerGender.getSelectedItem().toString(),
+                    Integer.parseInt(editTextAge.getText().toString())
+            );
+
+            // Create an instance of ReceiverDatabaseHelper and insert the receiver data
+            ReceiverDatabaseHelper receiverDatabaseHelper = new ReceiverDatabaseHelper(getActivity());
+            receiverDatabaseHelper.insertReceiverData(receiver);
+
+            Toast.makeText(getActivity(), "The data has been updated", Toast.LENGTH_SHORT).show();
 
         });
 

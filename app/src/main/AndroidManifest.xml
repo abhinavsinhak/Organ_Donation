@@ -12,6 +12,12 @@
         android:theme="@style/Theme.OrganDonationApp"
         tools:targetApi="31">
         <activity
+            android:name=".fragment_all_receivers"
+            android:exported="false" />
+        <activity
+            android:name=".activity_all_data"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity2"
             android:exported="false">
             <meta-data

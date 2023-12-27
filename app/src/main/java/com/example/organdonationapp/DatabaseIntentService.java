@@ -1,4 +1,3 @@
-// File: DatabaseIntentService.java
 package com.example.organdonationapp;
 
 import android.app.IntentService;
@@ -7,10 +6,10 @@ import android.util.Log;
 
 public class DatabaseIntentService extends IntentService {
 
-    private static final String TAG = "DatabaseIntentService";
+    public static final String TAG = "DatabaseIntentService";
 
-    private DonorDatabaseHelper donorDatabaseHelper;
-    private ReceiverDatabaseHelper receiverDatabaseHelper;
+    public DonorDatabaseHelper donorDatabaseHelper;
+    public ReceiverDatabaseHelper receiverDatabaseHelper;
 
     public DatabaseIntentService() {
         super("DatabaseIntentService");

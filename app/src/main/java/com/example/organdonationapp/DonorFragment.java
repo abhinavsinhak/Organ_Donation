@@ -10,9 +10,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+
+import java.util.ArrayList;
 
 public class DonorFragment extends Fragment {
 
@@ -23,6 +26,7 @@ public class DonorFragment extends Fragment {
     private Spinner spinnerGender;
     private EditText editTextAge;
     private Button buttonUpdate;
+    private Button buttonShowDonors;
     private ImageView imageView;
 
     private SharedViewModel sharedViewModel;
@@ -40,7 +44,7 @@ public class DonorFragment extends Fragment {
         editTextAge = view.findViewById(R.id.editTextAge);
         buttonUpdate = view.findViewById(R.id.buttonUpdate);
         imageView = view.findViewById(R.id.imageView);
-
+        buttonShowDonors = view.findViewById(R.id.buttonShowDonors);
         sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
 
         buttonUpdate.setOnClickListener(v -> {
@@ -57,13 +61,22 @@ public class DonorFragment extends Fragment {
             String selectedGender = spinnerGender.getSelectedItem().toString();
             sharedViewModel.selectGender(selectedGender);
 
-            // Pass the donor information to the DatabaseIntentService
-            Intent intent = new Intent(getActivity(), DatabaseIntentService.class);
-            intent.setAction("INSERT_DONOR_DATA");
-            Bundle bundle = new Bundle();
-            bundle.putSerializable("donor", donor);
-            intent.putExtras(bundle);
-            getActivity().startService(intent);
+            // Directly insert the donor information into the database
+            DonorDatabaseHelper donorDatabaseHelper = new DonorDatabaseHelper(getActivity());
+            donorDatabaseHelper.insertDonorData(donor);
+
+            Toast.makeText(getActivity(), "The data has been updated", Toast.LENGTH_SHORT).show();
+        });
+
+         buttonShowDonors.setOnClickListener(v -> {
+            // existing code...
+
+//            // Start AllDataActivity with the ContactList
+//            Intent intentActivity = new Intent(getActivity(), AllDataActivity.class);
+//            DonorDatabaseHelper donorDatabaseHelper = new DonorDatabaseHelper(getActivity());
+//            ArrayList<ContactModel> contactList = donorDatabaseHelper.getAllDonors();
+//            intentActivity.putExtra("contactList", contactList);
+//            startActivity(intentActivity);
         });
 
         return view;

@@ -5,6 +5,11 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.database.Cursor;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.*;
 
 public class DonorDatabaseHelper extends SQLiteOpenHelper {
 
@@ -52,5 +57,29 @@ public class DonorDatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_AGE, donor.getAge());
         db.insert(TABLE_NAME, null, values);
         db.close();
+    }
+    public ArrayList<ContactModel> getAllDonors() {
+        ArrayList<ContactModel> contactList = new ArrayList<>();
+        String selectQuery = "SELECT  * FROM " + TABLE_NAME;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        while (cursor.moveToNext()){
+
+                ContactModel contact = new ContactModel();
+                contact.name=cursor.getString(1); // start from index 1
+                contact.organ=cursor.getString(2);
+                contact.aadhar=cursor.getString(3);
+                contact.mobile=cursor.getString(4);
+                contact.gender=cursor.getString(5);
+                contact.age=cursor.getInt(6);
+
+                contactList.add(contact);
+
+        }
+
+        cursor.close();
+        db.close();
+        return contactList;
     }
 }
