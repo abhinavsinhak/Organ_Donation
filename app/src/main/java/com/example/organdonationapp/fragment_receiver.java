@@ -1,6 +1,7 @@
 // File: ReceiverFragment.java
 package com.example.organdonationapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -54,10 +55,13 @@ public class fragment_receiver extends Fragment {
                     spinnerGender.getSelectedItem().toString(),
                     Integer.parseInt(editTextAge.getText().toString())
             );
-
-            // Create an instance of ReceiverDatabaseHelper and insert the receiver data
-            ReceiverDatabaseHelper receiverDatabaseHelper = new ReceiverDatabaseHelper(getActivity());
-            receiverDatabaseHelper.insertReceiverData(receiver);
+            Intent intent = new Intent(getActivity(), DatabaseIntentService.class);
+            intent.setAction("INSERT_DONOR_DATA");
+            intent.putExtra("reciver", receiver);
+            getActivity().startService(intent);
+//            // Create an instance of ReceiverDatabaseHelper and insert the receiver data
+//            ReceiverDatabaseHelper receiverDatabaseHelper = new ReceiverDatabaseHelper(getActivity());
+//            receiverDatabaseHelper.insertReceiverData(receiver);
 
             Toast.makeText(getActivity(), "The data has been updated", Toast.LENGTH_SHORT).show();
 

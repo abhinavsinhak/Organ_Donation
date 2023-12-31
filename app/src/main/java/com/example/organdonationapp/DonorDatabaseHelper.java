@@ -1,6 +1,7 @@
 // File: DonorDatabaseHelper.java
 package com.example.organdonationapp;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -58,24 +59,24 @@ public class DonorDatabaseHelper extends SQLiteOpenHelper {
         db.insert(TABLE_NAME, null, values);
         db.close();
     }
+
+    @SuppressLint("Range")
     public ArrayList<ContactModel> getAllDonors() {
         ArrayList<ContactModel> contactList = new ArrayList<>();
         String selectQuery = "SELECT  * FROM " + TABLE_NAME;
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
 
-        while (cursor.moveToNext()){
+        while (cursor.moveToNext()) {
+            ContactModel contact = new ContactModel();
+            contact.name = cursor.getString(cursor.getColumnIndex(COLUMN_NAME));
+            contact.organ = cursor.getString(cursor.getColumnIndex(COLUMN_ORGAN));
+            contact.aadhar = cursor.getString(cursor.getColumnIndex(COLUMN_AADHAR));
+            contact.mobile = cursor.getString(cursor.getColumnIndex(COLUMN_MOBILE));
+            contact.gender = cursor.getString(cursor.getColumnIndex(COLUMN_GENDER));
+            contact.age = cursor.getInt(cursor.getColumnIndex(COLUMN_AGE));
 
-                ContactModel contact = new ContactModel();
-                contact.name=cursor.getString(1); // start from index 1
-                contact.organ=cursor.getString(2);
-                contact.aadhar=cursor.getString(3);
-                contact.mobile=cursor.getString(4);
-                contact.gender=cursor.getString(5);
-                contact.age=cursor.getInt(6);
-
-                contactList.add(contact);
-
+            contactList.add(contact);
         }
 
         cursor.close();

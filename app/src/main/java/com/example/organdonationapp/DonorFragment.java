@@ -61,23 +61,21 @@ public class DonorFragment extends Fragment {
             String selectedGender = spinnerGender.getSelectedItem().toString();
             sharedViewModel.selectGender(selectedGender);
 
+            Intent intent = new Intent(getActivity(), DatabaseIntentService.class);
+            intent.setAction("INSERT_DONOR_DATA");
+            intent.putExtra("donor", donor);
+            getActivity().startService(intent);
             // Directly insert the donor information into the database
-            DonorDatabaseHelper donorDatabaseHelper = new DonorDatabaseHelper(getActivity());
-            donorDatabaseHelper.insertDonorData(donor);
+//            DonorDatabaseHelper donorDatabaseHelper = new DonorDatabaseHelper(getActivity());
+//            donorDatabaseHelper.insertDonorData(donor);
 
             Toast.makeText(getActivity(), "The data has been updated", Toast.LENGTH_SHORT).show();
         });
 
          buttonShowDonors.setOnClickListener(v -> {
-            // existing code...
-
-//            // Start AllDataActivity with the ContactList
-//            Intent intentActivity = new Intent(getActivity(), AllDataActivity.class);
-//            DonorDatabaseHelper donorDatabaseHelper = new DonorDatabaseHelper(getActivity());
-//            ArrayList<ContactModel> contactList = donorDatabaseHelper.getAllDonors();
-//            intentActivity.putExtra("contactList", contactList);
-//            startActivity(intentActivity);
-        });
+             Intent intent = new Intent(getActivity(), DonorListActivity.class);
+             startActivity(intent);
+         });
 
         return view;
     }
