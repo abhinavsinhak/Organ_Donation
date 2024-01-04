@@ -1,6 +1,7 @@
 // File: ReceiverFragment.java
 package com.example.organdonationapp;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -24,8 +25,10 @@ public class fragment_receiver extends Fragment {
     private EditText editTextAge;
     private Button buttonUpdate;
 
+    private Button buttonShowDonors;
     private SharedViewModel sharedViewModel;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -38,6 +41,7 @@ public class fragment_receiver extends Fragment {
         spinnerGender = view.findViewById(R.id.spinnerGender);
         editTextAge = view.findViewById(R.id.editTextAge);
         buttonUpdate = view.findViewById(R.id.buttonUpdate);
+        buttonShowDonors = view.findViewById(R.id.buttonShowDonors);
 
         sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
         sharedViewModel.getSelectedGender().observe(getViewLifecycleOwner(), gender -> {
@@ -66,9 +70,14 @@ public class fragment_receiver extends Fragment {
             Toast.makeText(getActivity(), "The data has been updated", Toast.LENGTH_SHORT).show();
 
         });
+        buttonShowDonors.setOnClickListener(v-> {
+            Intent intent = new Intent(getActivity(), DonorListActivity.class);
+            startActivity(intent);
+        });
 
         return view;
     }
+
 
     private void setSpinnerToValue(Spinner spinner, String value) {
         for (int i = 0; i < spinner.getCount(); i++) {

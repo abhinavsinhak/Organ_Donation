@@ -26,7 +26,8 @@ public class DonorAdapter extends RecyclerView.Adapter<DonorAdapter.DonorViewHol
         ContactModel contact = contactList.get(position);
         holder.nameTextView.setText(contact.name);
         holder.organTextView.setText(contact.organ);
-        // Set other fields as needed
+        holder.mobileTextView.setText(contact.mobile);
+        holder.genderTextView.setText(contact.gender);
     }
 
     @Override
@@ -38,12 +39,16 @@ public class DonorAdapter extends RecyclerView.Adapter<DonorAdapter.DonorViewHol
 
         public TextView nameTextView;
         public TextView organTextView;
+        public TextView mobileTextView;
+        public TextView genderTextView;
         // Add other fields as needed
 
         public DonorViewHolder(View view) {
             super(view);
             nameTextView = view.findViewById(R.id.nameTextView);
             organTextView = view.findViewById(R.id.organTextView);
+            genderTextView = view.findViewById(R.id.genderTextView);
+            mobileTextView = view.findViewById(R.id.mobileTextView);
             // Initialize other fields as needed
         }
     }

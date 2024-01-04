@@ -15,6 +15,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16sp" />
+    <TextView
+        android:id="@+id/mobileTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp" />
+    <TextView
+        android:id="@+id/genderTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp" />
 
 
 </LinearLayout>
