@@ -1,30 +1,63 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="16dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="8dp"
+    app:contentElevation="16dp"
+    app:cardCornerRadius="5dp"
+    app:cardUseCompatPadding="true">
 
-    <TextView
-        android:id="@+id/nameTextView"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="16sp" />
+        android:orientation="vertical"
+        android:padding="16dp">
 
-    <TextView
-        android:id="@+id/organTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="16sp" />
-    <TextView
-        android:id="@+id/mobileTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="16sp" />
-    <TextView
-        android:id="@+id/genderTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="16sp" />
+        <TextView
+            android:id="@+id/nameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp" />
 
+        <TextView
+            android:id="@+id/organTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp" />
 
-</LinearLayout>
+        <!-- Button for expand/collapse -->
+        <Button
+            android:id="@+id/buttonExpandCollapse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Expand/Collapse"
+            android:layout_gravity="bottom"/>
+
+        <!-- Layout to be expanded/collapsed -->
+        <LinearLayout
+            android:id="@+id/layoutExpandCollapse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/mobileTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp" />
+            <TextView
+                android:id="@+id/genderTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp" />
+                        <!-- Button for call action -->
+            <Button
+                android:id="@+id/buttonCall"
+                android:layout_gravity="right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Call" />
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
