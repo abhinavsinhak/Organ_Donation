@@ -7,4 +7,7 @@
     </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="call_description">Call donor</string>
+    <string name="expand_collapse_description">Expand and collapse to view more information</string>
+
 </resources>
