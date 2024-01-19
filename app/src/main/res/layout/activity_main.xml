@@ -45,7 +45,6 @@
                 app:ccp_showPhoneCode="true"
                 app:ccp_autoDetectCountry="false"
                 app:ccp_autoDetectLanguage="false"
-                app:ccp_dialogShowPhoneCode="true"
                 app:ccp_useFlagEmoji="false" />
 
             <EditText
